@@ -3,13 +3,13 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 
 import postRoutes from './routes/posts.js'
-require('dotenv').config();
+import dotenv from 'dotenv'
+dotenv.config()
 const {
     DB_USER, DB_PASSWORD
   } = process.env;
 
 const app = express();
-
 
 
 app.use(express.json({ limit: "30mb", extended: true}));

@@ -8,12 +8,12 @@ export const getPosts = () => async (dispatch) => {
         // receive the response {data obj} from the api 
         const { data } = await api.fetchPosts();
         // dispatch the action
-        dispatch({ type: 'Fetch_ALL', payload: data});
+        dispatch({ type: "FETCH_ALL", payload: data });
     } catch (error) {
         console.log(error.message)
     }
+};
 
-}
 
 export const createPost = (post) => async (dispatch) => {
     try {
