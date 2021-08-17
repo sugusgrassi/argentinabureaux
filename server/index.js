@@ -3,6 +3,10 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 
 import postRoutes from './routes/posts.js'
+require('dotenv').config();
+const {
+    DB_USER, DB_PASSWORD
+  } = process.env;
 
 const app = express();
 
@@ -15,7 +19,7 @@ app.use(cors());
 // prefix for all routes in posts.js
 app.use('/posts', postRoutes);
 
-const CONNECTION_URL = 'mongodb+srv://merncards:MERNsugus1983@cluster0.mgqpa.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const CONNECTION_URL = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@cluster0.mgqpa.mongodb.net/myFirstDatabase?retryWrites=true&w=majorityz`;
 
 const PORT = process.env.PORT || 5000;
 
