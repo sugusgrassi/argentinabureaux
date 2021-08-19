@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Container, AppBar, Typography, Grow, Grid} from '@material-ui/core';
-import { FcLandscape } from 'react-icons/fc';
+import ImageSearchIcon from '@material-ui/icons/ImageSearch';
 import { useDispatch } from 'react-redux';
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 
 import { getPosts } from './actions/posts';
 import Posts from './components/Posts/Posts';
@@ -23,7 +24,7 @@ function App() {
                 <Typography className={classes.heading} variant="h2" align="center">
                     Argentina Bureux
                 </Typography>
-                <FcLandscape className={classes.image} alt="memories" height="100%" />
+                <ImageSearchIcon className={classes.image} alt="memories" style={{width:"50px", height:"50px" }} />
             </AppBar>
             <Grow in>
                 <Container>
