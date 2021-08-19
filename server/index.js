@@ -19,7 +19,7 @@ app.use(cors());
 // prefix for all routes in posts.js
 app.use('/posts', postRoutes);
 
-const CONNECTION_URL = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@cluster0.mgqpa.mongodb.net/myFirstDatabase?retryWrites=true&w=majorityz`;
+const CONNECTION_URL = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@cluster0.mgqpa.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
 const PORT = process.env.PORT || 5000;
 
