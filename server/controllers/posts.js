@@ -1,6 +1,5 @@
 // logic
 import mongoose from 'mongoose';
-import posts from '../../client/src/reducers/posts.js';
 import PostMessage from '../models/postMessage.js';
 
 export const getPosts = async (req, res) => {
