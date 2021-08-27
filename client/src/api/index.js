@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 
-const url = 'https://argentinabureaux.app.com/posts';
+const url = 'https://argentina-bureaux.herokuapp.com/posts';
 
 export const fetchPosts = () => axios.get(url);
 export const createPost = (newPost) => axios.post(url, newPost);
