@@ -2,7 +2,10 @@
 
 import axios from 'axios';
 
-const url = 'https://argentina-bureaux.herokuapp.com/posts';
+// const url = ;
+
+const url =  window.location.hostname === "localhost" ? 'http://localhost:5000/posts' : 'https://argentina-bureaux.herokuapp.com/posts';
+
 
 export const fetchPosts = () => axios.get(url);
 export const createPost = (newPost) => axios.post(url, newPost);
