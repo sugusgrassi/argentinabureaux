@@ -4,7 +4,6 @@ import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import moment from 'moment';
 import { useDispatch } from 'react-redux';
 
 import { deletePost, likePost } from '../../../actions/posts';
