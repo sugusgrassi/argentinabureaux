@@ -8,7 +8,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Input from './Input';
 import useStyles from './styles';
 import Icon from './Icon';
-
+import { singin, signup } from '../../actions/auth';
 
 const Auth = () => {
     const classes = useStyles();
@@ -30,6 +30,14 @@ const Auth = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(formData);
+
+        // Two types of submit
+        if(isSignup) {
+            dispatch(signup(formData, history))
+        } else {
+            dispatch(signin(formData, history))
+            
+        }
     }
 
     const handleChange = (e) => {
@@ -51,7 +59,9 @@ const Auth = () => {
     };
     
     const handleShowPassword = () => {
-        setShowPassword((prevShowPassword) => !handleShowPassword)
+        console.log("setShowPassword?")
+        // setShowPassword(!showPassword ? true : false);
+        setShowPassword((prevShowPassword) => !prevShowPassword)
     };
     
     const googleSuccess = async (res) => {
@@ -97,7 +107,7 @@ const Auth = () => {
                         {isSignup ? "Registrarse" : "Iniciar sesión"}
                     </Button>
                     <GoogleLogin 
-                        clientId="CLIENT ID"
+                        clientId="104327812740-16nsbe3icea6mg2rcl2gjflgltmcsq94.apps.googleusercontent.com"
                         render={(renderProps) => (
                             <Button 
                             className={classes.googleButton.Button}  
