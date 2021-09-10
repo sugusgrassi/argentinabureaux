@@ -8,7 +8,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Input from './Input';
 import useStyles from './styles';
 import Icon from './Icon';
-import { singin, signup } from '../../actions/auth';
+import { signin, signup } from '../../actions/auth';
 
 const Auth = () => {
     const classes = useStyles();
@@ -28,6 +28,7 @@ const Auth = () => {
     // sign in = iniciar sesión
 
     const handleSubmit = (e) => {
+        // no reloads:
         e.preventDefault();
         console.log(formData);
 
@@ -55,7 +56,7 @@ const Auth = () => {
     or */
     const switchMode = () => {
         setIsSignup((prevIsSignup) => !prevIsSignup);
-        handleShowPassword(false)
+        setShowPassword(false)
     };
     
     const handleShowPassword = () => {

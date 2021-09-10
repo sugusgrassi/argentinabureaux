@@ -3,10 +3,11 @@ import * as api from '../api';
 // Action Creators
 import { AUTH } from '../constants/actionTypes.js';
 
+// We receive formData from the Auth.js component
 export const signin = (formData, history) => async (dispatch) => {
     try {
-        // log in the user..
-
+        // send data to the backend/database and log in the user..
+        // call api endpoints
         history.push('/')
     } catch (error) {
         console.log(error)
@@ -15,8 +16,8 @@ export const signin = (formData, history) => async (dispatch) => {
 
 export const signup = (formData, history) => async (dispatch) => {
     try {
-        // sign up the user..
-
+        // send data to the backend/database and sign up the user..
+        // call api endpoints
         history.push('/')
     } catch (error) {
         console.log(error)
