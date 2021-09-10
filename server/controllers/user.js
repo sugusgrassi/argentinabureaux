@@ -1,4 +1,4 @@
-import bcrypt from 'bycrptjs'; // to hash the paswords 
+import bcrypt from 'bcryptjs'; // to hash the paswords 
 import jwt from 'jsonwebtoken'; 
 import dotenv from 'dotenv';
 dotenv.config()
