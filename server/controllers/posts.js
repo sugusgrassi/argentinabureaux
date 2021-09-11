@@ -62,11 +62,13 @@ export const deletePost = async (req, res) => {
 export const likePost = async (req, res) => {
     const { id } = req.params;
 
-    // console.log('LIKE')
-    if(!req.userId) return res.json({ message: 'no autenticado'})
+    // console.log(req.userId)
+    if(!req.userId) {
+        return res.json({ message: 'no autenticado'})
+    }
 
     // checks if the id is valid
-    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No post with that id');
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No hay posteo con ese id: ${id}`);
 
     const post = await PostMessage.findById(id);
 
