@@ -4,6 +4,7 @@ import { AppBar, Typography, Toolbar, Button, Avatar } from '@material-ui/core';
 import ImageSearchIcon from '@material-ui/icons/ImageSearch';
 import useStyles from './styles';
 import { useDispatch } from 'react-redux';
+import decode from 'jwt-decode';
 
 const Navbar = () => {
     const classes = useStyles();
@@ -18,6 +19,13 @@ const Navbar = () => {
     // if user is logged, this useEffect will show it in the navBar 
     useEffect(() => {
         const token = user?.token;
+
+        if(token) {
+            const decodedToken = decode(token);
+
+            if (decodedToken.exp * 1000 < new Date().getTime()) logout()
+        }
+
         setUser(JSON.parse(localStorage.getItem('profile')))
     }, [location]); // https://reactrouter.com/web/api/Hooks/uselocation
 
