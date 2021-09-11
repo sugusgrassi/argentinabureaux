@@ -13,6 +13,7 @@ const auth = async (req, res, next) => {
 
     try {
         //checks if the user token is valid
+        console.log(req.headers)
         const token = req.headers.authorization.split(" ")[1];
         const isCustomAuth = token.length < 500; // Not google auth
 
