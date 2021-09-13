@@ -13,7 +13,7 @@ const auth = async (req, res, next) => {
 
     try {
         //checks if the user token is valid
-        console.log(req.headers)
+
         // Authorization in the frontend to Titlecase
         // authorization in the backend to lowercase
         const token = req.headers.authorization.split(" ")[1];
