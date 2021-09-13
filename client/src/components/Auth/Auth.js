@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core';
 import { GoogleLogin } from 'react-google-login';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
 
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Input from './Input';
 import useStyles from './styles';
 import Icon from './Icon';
 import { signin, signup } from '../../actions/auth';
+import Swal from 'sweetalert2';
 
 const Auth = () => {
     const classes = useStyles();
@@ -30,7 +31,6 @@ const Auth = () => {
     const handleSubmit = (e) => {
         // no reloads:
         e.preventDefault();
-        console.log(formData);
 
         // Two types of submit
         if(isSignup) {
@@ -60,7 +60,6 @@ const Auth = () => {
     };
     
     const handleShowPassword = () => {
-        console.log("setShowPassword?")
         // setShowPassword(!showPassword ? true : false);
         setShowPassword((prevShowPassword) => !prevShowPassword)
     };
@@ -75,12 +74,15 @@ const Auth = () => {
         } catch (error) {
             console.log(error)
         }
-        // console.log(res)
+
     };
 
     const googleFailure = (error) => {
         console.log("No se pudo iniciar sesión con Google. Pruebe más tarde")
         console.log(error)
+        if (error) {
+            Swal.fire("No se pudo iniciar sesión con Google, pruebe más tarde o intente borrar la memoria caché de su navegador.")
+        }
     };
 
 
