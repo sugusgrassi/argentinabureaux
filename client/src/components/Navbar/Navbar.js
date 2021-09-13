@@ -14,7 +14,6 @@ const Navbar = () => {
     const location = useLocation();
     // const user = null;
 
-    console.log(user);
 
     // if user is logged, this useEffect will show it in the navBar 
     useEffect(() => {

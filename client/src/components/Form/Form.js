@@ -22,7 +22,6 @@ const Form = ({currentId, setCurrentId}) => {
     // to grab the user info
     const user = JSON.parse(localStorage.getItem('profile'));
 
-console.log(post)
     useEffect(() => {
         if(post) setPostData(post);
     }, [post])
