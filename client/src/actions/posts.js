@@ -1,7 +1,7 @@
 import * as api from '../api';
 
 // Action Creators
-import { CREATE, UPDATE, DELETE, FETCH_ALL, LIKE } from '../constants/actionTypes.js';
+import { CREATE, UPDATE, DELETE, FETCH_ALL, FETCH_BY_SEARCH, LIKE } from '../constants/actionTypes.js';
 
 // async data, so use redux thunk to specify an aditional arrow function: async (dispatch). A function that returns another function
 export const getPosts = () => async (dispatch) => {
@@ -14,6 +14,16 @@ export const getPosts = () => async (dispatch) => {
         console.log(error.message)
     }
 };
+
+export const getPostsBySearch = (searchQuery) => async (dispatch) => {
+    try {
+        const { data } = await api.fetchPostsBySearch(searchQuery);
+
+        dispatch({ type: FETCH_BY_SEARCH, payload: data});
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 
 export const createPost = (post) => async (dispatch) => {

@@ -1,6 +1,6 @@
 // function
 
-import { CREATE, UPDATE, DELETE, FETCH_ALL, LIKE } from '../constants/actionTypes.js';
+import { CREATE, UPDATE, DELETE, FETCH_ALL, FETCH_BY_SEARCH, LIKE } from '../constants/actionTypes.js';
 
 
 // The state is posts
@@ -12,6 +12,8 @@ const posts = (posts = [], action) => {
         case LIKE:
             return posts.map((post) => post._id === action.payload._id ? action.payload : post)
         case FETCH_ALL:
+            return action.payload;
+        case FETCH_BY_SEARCH:
             return action.payload;
         case CREATE:
             return [...posts, action.payload];
