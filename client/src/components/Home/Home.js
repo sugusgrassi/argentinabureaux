@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import ChipInput from 'material-ui-chip-input';
 
-import { getPosts } from '../../actions/posts';
+import { getPosts, getPostsBySearch } from '../../actions/posts';
 import Posts from '../Posts/Posts';
 import Form from '../Form/Form';
 import Pagination from '../Pagination/Pagination';
@@ -34,17 +34,20 @@ const Home = () => {
     }, [currentId, dispatch])
 
     const searchPost = () => {
-        if(search.trim()) {
+        if(search.trim() || tags) {
            // dispatch > fetch search post 
            // modify redux + db
+           dispatch(getPostsBySearch({search, tags: tags.join(',') })); // to send through the url: ["bureau", "argentina"] => "bureau,argentina"
+           history.push(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')} `);
         } else {
             history.push('/');
         }
     }
 
     const handleKeyPress = (e) => {
-        if(e.keyCode === 13) {
-            //searcg post
+        // event keycode 13 it's the Return or Enter key on keyboard.
+        if(e.keyCode === 13 || e.keyCode === 32) {
+            //search post
             searchPost();
         }
     }
@@ -53,7 +56,7 @@ const Home = () => {
 
     const handleDelete = (tagToDelete) => setTags(tags.filter((tag) => tag !== tagToDelete));
 
-
+    // console.log(tags)
     return (
         <div>
             <Grow in>
@@ -78,6 +81,7 @@ const Home = () => {
                                 value={tags}
                                 onAdd={handleAdd}
                                 onDelete={handleDelete}
+                                // onKeyPress={handleKeyPress}
                                 label="Buscar etiquetas"
                                 variant="outlined"
                             />
