@@ -52,11 +52,11 @@ const Form = ({currentId, setCurrentId}) => {
     // if no user you can't create post:
     if(!user?.result?.name) {
         return (
-            <paper className={classes.paper}>
+            <Paper className={classes.paper}>
                 <Typography variant="h6" align="center">
                     Por favor iniciar para cargar bureaux.
                 </Typography>
-            </paper>
+            </Paper>
         )
     }
 

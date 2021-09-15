@@ -4,21 +4,26 @@ import { CREATE, UPDATE, DELETE, FETCH_ALL, FETCH_BY_SEARCH, LIKE } from '../con
 
 
 // The state is posts
-const posts = (posts = [], action) => {
+const posts = (state = [], action) => {
     switch (action.type) {
         case DELETE:
-            return posts.filter((post) => post._id !== action.payload);
+            return state.filter((post) => post._id !== action.payload);
         case UPDATE:
         case LIKE:
-            return posts.map((post) => post._id === action.payload._id ? action.payload : post)
+            return state.map((post) => post._id === action.payload._id ? action.payload : post)
         case FETCH_ALL:
-            return action.payload;
+            return {
+                ...state,
+                posts: action.payload.data,
+                currentPage: action.payload.currentPage,
+                numberOfPages: action.payload.numberOfPages
+            };
         case FETCH_BY_SEARCH:
-            return action.payload;
+            return { ...state, posts: action.payload };
         case CREATE:
-            return [...posts, action.payload];
+            return [...state, action.payload];
         default:
-            return posts;
+            return state;
     }
 }
 
