@@ -56,7 +56,7 @@ const Home = () => {
 
     const handleDelete = (tagToDelete) => setTags(tags.filter((tag) => tag !== tagToDelete));
 
-    console.log(tags)
+    // console.log(tags)
     return (
         <div>
             <Grow in>
