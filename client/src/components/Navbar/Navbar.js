@@ -41,7 +41,7 @@ const Navbar = () => {
                 <Typography component={Link} to="/" className={classes.heading} variant="h2" align="center">
                     Argentina Bureux
                 </Typography>
-                <ImageSearchIcon className={classes.image} alt="memories" style={{width:"50px", height:"50px" }} />
+                {/* <ImageSearchIcon className={classes.image} alt="memories" style={{width:"50px", height:"50px" }} /> */}
             </div>
             <Toolbar className={classes.profile}>
                 {user ? (

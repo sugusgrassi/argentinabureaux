@@ -2,6 +2,10 @@
 import mongoose from 'mongoose';
 import PostMessage from '../models/postMessage.js';
 
+
+// QUERY for search. eg -> /posts?page=1
+// PARAMS to get specific resource. eg -> /posts/:id -> id = 123
+
 export const getPosts = async (req, res) => {
     try {
         const postMessages = await PostMessage.find();
@@ -15,12 +19,31 @@ export const getPosts = async (req, res) => {
     }
 }
 
+export const getPostsBySearch = async (req, res) => {
+    const { searchQuery, tags } = req.query
+
+    // console.log(req.query)
+    try {
+        // turn title into a regexp + 'i' ignore case: Easier to mongoDB to search in de db
+        const title = new RegExp(searchQuery, 'i');
+
+        // search db for posts. 
+        // $or: find the title or tags
+        // $in: is a tag in this array that match the query?
+        const posts = await PostMessage.find({ $or: [ { title}, { tags: { $in: tags.split(",") } }] });
+
+        // console.log(posts)
+        // return to the front:
+        res.json({ data: posts })
+    } catch (error) {
+        res.status(404).json({ messsage: error.message })
+    }
+}
+
 export const createPost = async (req, res) => {
     const post = req.body;
 
-
     const newPost = new PostMessage({ ...post, creator: req.userId, createdAt: new Date().toISOString()});
-
 
     try {
         await newPost.save()
