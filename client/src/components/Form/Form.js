@@ -15,7 +15,7 @@ const Form = ({currentId, setCurrentId}) => {
         tags: '',
         selectedFile: ''
     });
-    const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null)
+    const post = useSelector((state) => currentId ? state.posts.posts.find((p) => p._id === currentId) : null)
     const classes = useStyles();
     const dispatch = useDispatch();
 
@@ -61,7 +61,7 @@ const Form = ({currentId, setCurrentId}) => {
     }
 
     return (
-        <Paper className={classes.paper}>
+        <Paper className={classes.paper} elevation={6}>
          <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
              <Typography variant="h6">{currentId ? 'Editar' : 'Agregar'} bureau</Typography>
              <TextField name="president" variant="outlined" label="Nombre" fullWidth value={postData.president} onChange={(e) => setPostData({ ...postData, president: e.target.value })}> </TextField>
