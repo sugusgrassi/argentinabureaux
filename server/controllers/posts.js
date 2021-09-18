@@ -26,6 +26,18 @@ export const getPosts = async (req, res) => {
     }
 }
 
+export const getPost = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const post = await PostMessage.findById(id)
+
+        res.status(200).json(post);
+    } catch (error) {
+        res.status(404).json({ message: error.message});
+    }
+}
+
 export const getPostsBySearch = async (req, res) => {
     const { searchQuery, tags } = req.query
 
@@ -50,6 +62,7 @@ export const getPostsBySearch = async (req, res) => {
 export const createPost = async (req, res) => {
     const post = req.body;
 
+    // With the post info from the front we add the id creator cretedAt and the _id:
     const newPost = new PostMessage({ ...post, creator: req.userId, createdAt: new Date().toISOString()});
 
     try {

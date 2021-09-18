@@ -15,6 +15,7 @@ import userRoutes from './routes/users.js'
 
 app.use(express.json({ limit: "30mb", extended: true}));
 app.use(express.urlencoded({ limit: "30mb", extended: true}));
+
 // first we specify the use of cors and then the use of routes
 app.use(cors());
 
