@@ -1,6 +1,6 @@
 // function
 
-import { CREATE, UPDATE, DELETE, FETCH_ALL, FETCH_BY_SEARCH, LIKE, START_LOADING, END_LOADING } from '../constants/actionTypes.js';
+import { CREATE, UPDATE, DELETE, FETCH_ALL, FETCH_POST, FETCH_BY_SEARCH, LIKE, START_LOADING, END_LOADING } from '../constants/actionTypes.js';
 
 
 // The state is posts
@@ -19,6 +19,8 @@ const posts = (state = {isLoading: true, posts: [] }, action) => {
             };
         case FETCH_BY_SEARCH:
             return { ...state, posts: action.payload };
+        case FETCH_POST:
+            return { ...state, post: action.payload };
         case CREATE:
             return { ...state, posts: [...state.posts, action.payload]};
         case UPDATE:
