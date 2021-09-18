@@ -4,7 +4,7 @@ import { TextField, Button, Typography, Paper } from '@material-ui/core';
 import FileBase from 'react-file-base64';
 import { useDispatch, useSelector } from 'react-redux';
 import { createPost, updatePost } from '../../actions/posts';
-
+import { useHistory } from 'react-router-dom';
 
 
 const Form = ({currentId, setCurrentId}) => {
@@ -18,6 +18,7 @@ const Form = ({currentId, setCurrentId}) => {
     const post = useSelector((state) => currentId ? state.posts.posts.find((p) => p._id === currentId) : null)
     const classes = useStyles();
     const dispatch = useDispatch();
+    const history = useHistory();
 
     // to grab the user info
     const user = JSON.parse(localStorage.getItem('profile'));
@@ -32,7 +33,7 @@ const Form = ({currentId, setCurrentId}) => {
         if (currentId) {
             dispatch(updatePost(currentId, {...postData, name: user?.result?.name}));
         } else {
-            dispatch(createPost({...postData, name: user?.result?.name}));
+            dispatch(createPost({...postData, name: user?.result?.name}, history));
         }
         
         clear();
@@ -64,9 +65,9 @@ const Form = ({currentId, setCurrentId}) => {
         <Paper className={classes.paper} elevation={6}>
          <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
              <Typography variant="h6">{currentId ? 'Editar' : 'Agregar'} bureau</Typography>
-             <TextField name="president" variant="outlined" label="Nombre" fullWidth value={postData.president} onChange={(e) => setPostData({ ...postData, president: e.target.value })}> </TextField>
-             <TextField name="title" variant="outlined" label="Presidente" fullWidth value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value })}> </TextField>
-             <TextField name="message" variant="outlined" label="Descripción" fullWidth value={postData.message} onChange={(e) => setPostData({ ...postData, message: e.target.value })}> </TextField>
+             <TextField name="title" variant="outlined" label="Nombre" fullWidth value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value })}> </TextField>
+             <TextField name="Presidente" variant="outlined" label="Presidente" fullWidth value={postData.president} onChange={(e) => setPostData({ ...postData, president: e.target.value })}> </TextField>
+             <TextField name="message" variant="outlined" label="Descripción" fullWidth multiline rows={4} value={postData.message} onChange={(e) => setPostData({ ...postData, message: e.target.value })}> </TextField>
              <TextField name="tags" variant="outlined" label="Tags" fullWidth value={postData.tags} onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(",") })}> </TextField>
              <div className={classes.fileInput}>
                  <FileBase
